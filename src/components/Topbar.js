@@ -4,24 +4,29 @@ import IconButton from '@material-ui/core/IconButton';
 import { MenuContext } from '../context/MenuContext';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
+import { makeStyles } from '@material-ui/core/styles';
+import Menu from './Menu'
+import SideMenu from './SideMenu';
 
-const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
+    borderBottom: `1px solid ${theme.palette.divider}`,
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
       display: 'none',
     },
   },
-  
+  toolbar: {
+    flexWrap: 'wrap',
+  },
+  toolbarTitle: {
+    flexGrow: 1,
+  },
+  link: {
+    margin: theme.spacing(1, 1.5),
+  },
 }));
 
 const Topbar = (props) => {
@@ -34,7 +39,8 @@ const Topbar = (props) => {
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
-      <Toolbar>
+      <Toolbar> 
+        <Menu />
         <IconButton
           color="inherit"
           aria-label="open drawer"
@@ -44,8 +50,8 @@ const Topbar = (props) => {
         >
           <MenuIcon />
         </IconButton>
-        <Avatar>H</Avatar>
       </Toolbar>
+      <SideMenu />
     </AppBar>
 
   )
