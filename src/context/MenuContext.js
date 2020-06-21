@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 
 const MenuContext = React.createContext([{}, () => { }]);
 const MenuProvider = (props) => {
-    const [mobileOpen, setMobileOpen] = useState(false);
+    const [state, setState] = useState({ 
+        mobileOpen: false, 
+    });
 
     return (
-        <MenuContext.Provider value={[mobileOpen, setMobileOpen]}>
+        <MenuContext.Provider value={[state, setState]}>
             {props.children}
         </MenuContext.Provider>
     );

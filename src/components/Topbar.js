@@ -31,10 +31,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Topbar = (props) => {
   const classes = useStyles();
-  const [mobileOpen, setMobileOpen] = useContext(MenuContext)
+  const [state, setState] = useContext(MenuContext)
 
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
+    setState({ ...state, mobileOpen: !state.mobileOpen })
   };
 
   return (

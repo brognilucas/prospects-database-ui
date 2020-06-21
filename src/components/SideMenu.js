@@ -30,9 +30,10 @@ const useStyles = makeStyles((theme) => ({
 const SideMenu = (props) => {
     const { window } = props;
     const classes = useStyles();
-    const [mobileOpen, setMobileOpen] = useContext(MenuContext);
+    const [state, setState] = useContext(MenuContext);
+    
     const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
+        setState({ ...state, mobileOpen: !state.mobileOpen });
     };
 
     const container = window !== undefined ? () => window().document.body : undefined;
@@ -44,7 +45,7 @@ const SideMenu = (props) => {
                     container={container}
                     variant='temporary'
                     anchor={'left'}
-                    open={mobileOpen}
+                    open={state.mobileOpen}
                     onClose={handleDrawerToggle}
                     classes={{ paper: classes.drawerPaper, }}
                     ModalProps={{ keepMounted: true }}

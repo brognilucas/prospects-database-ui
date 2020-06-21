@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Topbar from './Topbar'
-import Content from './Component';
+import Content from './Content';
 import { makeStyles } from '@material-ui/core/styles';
 
 

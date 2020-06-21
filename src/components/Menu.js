@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
+import { MenuContext } from '../context/MenuContext';
+
+import { Link } from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -34,24 +37,29 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
 const Menu = (props) => {
+    const [state, setState] = useContext(MenuContext);
+
+    function signIn() {
+        setState({ ...state, signInOpen: true });
+    }
+
     const classes = useStyles();
     return (
         <React.Fragment>
             <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}> Prospects Database </Typography>
             <nav>
-                <Link variant="button" color="textPrimary" href="#" className={classes.link}>
+                <Button component={Link} to='/' variant="button" color="textPrimary" component={Link} className={classes.link}>
                     Features
-          </Link>
-                <Link variant="button" color="textPrimary" href="#" className={classes.link}>
+          </Button>
+                <Button variant="button" color="textPrimary" component={Link} className={classes.link}>
                     Enterprise
-          </Link>
-                <Link variant="button" color="textPrimary" href="#" className={classes.link}>
+          </Button>
+                <Button variant="button" color="textPrimary" component={Link} className={classes.link}>
                     Support
-          </Link>
+          </Button>
             </nav>
-            <Button href="#" color=""  variant="contained" className={classes.link}>
+            <Button component={Link} to='/sign-in' color="" onClick={signIn} variant="contained" className={classes.link}>
                 Login
         </Button>
         </React.Fragment>
