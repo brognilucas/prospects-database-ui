@@ -1,12 +1,11 @@
 import React from 'react'; 
 import LockIcon from "@material-ui/icons/Lock";
-
+import ListIcon from '@material-ui/icons/List';
 const generateMenu =  (loggedIn) => { 
-    console.log('loggedIn ' , loggedIn)
     let openRoutes = [ 
-        { route: '/sign-in' , name: 'Login' , icon: <LockIcon /> , showWhenLoggedIn: false }
+        { route: '/prospects' , name: 'Prospects List' , icon: <ListIcon /> , showWhenLoggedIn: true },
+        { route: '/sign-in' , name: 'Login' , icon: <LockIcon /> , showWhenLoggedIn: false },
     ]
-
 
     let protectedRoutes = [
 

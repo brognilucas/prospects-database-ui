@@ -43,7 +43,7 @@ const SignUpForm = ({ handleSignup, ...props }) => {
       handleSignup(values);
     },
   });
-
+  
   return (
     <form className={classes.form} onSubmit={formik.handleSubmit} noValidate>
       <TextField
