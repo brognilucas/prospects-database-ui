@@ -5,7 +5,6 @@ import { MenuContext } from '../context/MenuContext';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles } from '@material-ui/core/styles';
-import Menu from './Menu'
 import SideMenu from './SideMenu';
 
 const useStyles = makeStyles((theme) => ({
@@ -14,9 +13,6 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
   },
   toolbar: {
     flexWrap: 'wrap',
@@ -40,7 +36,6 @@ const Topbar = (props) => {
   return (
     <AppBar position="fixed" className={classes.appBar}>
       <Toolbar> 
-        <Menu />
         <IconButton
           color="inherit"
           aria-label="open drawer"

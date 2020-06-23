@@ -4,6 +4,7 @@ const MenuContext = React.createContext([{}, () => { }]);
 const MenuProvider = (props) => {
     const [state, setState] = useState({ 
         mobileOpen: false, 
+        loggedIn: false
     });
 
     return (
