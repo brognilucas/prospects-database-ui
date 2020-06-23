@@ -1,5 +1,19 @@
 import service from "./base";
 
+
+const createAccount = async (user) => { 
+    try {  
+      let response = await service.post("/users/sign-up" , user)
+      if (response.status === 201) { 
+        return true; 
+      }
+
+      return false;
+    } catch(error) { 
+      throw error;
+    }
+}
+
 const login = async (user) => {
   try {
     let response = await service.post("/users/sign-in", user);
@@ -39,4 +53,4 @@ const validateSession = async () => {
   }
 };
 
-export default { login, validateSession , logout };
+export default {createAccount, login, validateSession , logout };
