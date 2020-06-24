@@ -8,6 +8,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
+import Button from '@material-ui/core/Button'
+import {Link} from 'react-router-dom';
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -43,7 +45,7 @@ export default function List({ prospects }) {
                 <Avatar alt={prospect.name} src={prospect.photo} />
               </TableCell>
               <TableCell component="th" scope="row">
-                {prospect.name}
+                <Button component={Link} to={`/prospects/${prospect.code}`}>{prospect.name}</Button>
               </TableCell>
               <TableCell component="th" scope="row">
                 {prospect.position.toUpperCase()}

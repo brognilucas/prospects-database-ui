@@ -1,5 +1,11 @@
 import service from './base'
 
+async function findByCode(code) { 
+    let response = await  service.get(`/prospects/${code}`);
+
+    return response.data;
+}
+
 
 async function find(filter  = {}) { 
     let params = new URLSearchParams(filter).toString();
@@ -9,4 +15,4 @@ async function find(filter  = {}) {
 }
 
 
-export default { find };
+export default { find , findByCode };

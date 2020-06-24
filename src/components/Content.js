@@ -4,6 +4,7 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import HomePage from './HomePage'
 import ProspectsList from './ProspectsList';
+import ProspectDetail from './ProspectDetail'
 import {
     Switch,
     Route,
@@ -32,6 +33,7 @@ const Content = (props) => {
                 <Route exact path='/sign-in' component={SignIn} />
                 <Route exact path='/sign-up' component={SignUp} />
                 <Route exact path='/prospects' component={ProspectsList} />
+                <Route exact path='/prospects/:code' component={ProspectDetail} />
              </Switch>
         </main>
     )
