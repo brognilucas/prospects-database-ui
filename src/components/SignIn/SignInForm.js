@@ -91,7 +91,7 @@ const SignInForm = ({ handleLogin , invalidLogin  , ...props }) => {
       </Button>
       <Grid container>
         <Grid item>
-          <Button component={Link} to='/sign-up' href="#" variant="body2">
+          <Button component={Link} to='/sign-up' href="#" variant="contained">
             {"Don't have an account? Sign Up"}
           </Button>
         </Grid>
