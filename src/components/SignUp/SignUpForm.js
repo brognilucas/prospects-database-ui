@@ -33,7 +33,7 @@ const SignUpForm = ({ handleSignup, ...props }) => {
       });
 
       if (Object.keys(err).length){ 
-        return setErrors({ ...errors, ...err , message: 'Missing required fields '})
+        return setErrors({ ...errors, ...err , message: 'Missing required fields'})
       }
 
       if (values.password !== values.confirmPassword) { 
@@ -105,7 +105,7 @@ const SignUpForm = ({ handleSignup, ...props }) => {
         Sign Up
       </Button>
 
-      <Snackbar open={errors.message} autoHideDuration={6000} onClose={() => setErrors({})}>
+      <Snackbar open={!!(errors.message)} autoHideDuration={6000} onClose={() => setErrors({})}>
         <Alert severity="error" onClose={() => setErrors({})}>
           { errors.message }
         </Alert>

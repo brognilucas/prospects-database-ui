@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import userService from "../../services/user";
@@ -28,20 +28,11 @@ export default function SignIn(props) {
   const [loginInvalid, setLoginInvalid] = useState(false);
   const [state, setState] = useState(MenuContext);
   const history = useHistory();
-  async function handleLogin(data) {
-    userService
-      .login(data)
-      .then((loggedIn) => {
-        setLoginInvalid(loggedIn);
-        setState({ ...state, loggedIn });
 
-        return loggedIn
-      })
-      .then((loggedIn) => {
-        if (loggedIn) { 
-          history.push("/");
-        }
-      });
+  async function handleLogin(data) {
+    let loggedIn = await userService.login(data);
+    await setState({...state, loggedIn })
+    history.push("/");
   }
 
   return (

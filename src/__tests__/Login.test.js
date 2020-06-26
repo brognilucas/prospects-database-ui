@@ -1,10 +1,18 @@
 import React from "react";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
-import { render, fireEvent, act } from "@testing-library/react";
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+  waitFor,
+  act,
+} from "@testing-library/react";
+
 import user from "@testing-library/user-event";
 import "@testing-library/jest-dom/extend-expect";
 import Content from "../components/Content";
+import SignInForm from "../components/SignIn/SignInForm";
 
 const history = createMemoryHistory();
 let container, asFragment, getByText;
@@ -24,7 +32,7 @@ beforeEach(() => {
 
 jest.mock("../services/user", () => {
   return {
-    login: jest.fn(() => Promise.resolve(true)),
+    login: jest.fn(() => Promise.resolve(false)),
   };
 });
 
@@ -32,8 +40,11 @@ test("Should render the right value on input change", async () => {
   let emailValue = "email@email.com";
   const email = container.querySelector('[id="email"]');
   const password = container.querySelector('[id="password"]');
-  user.type(email, emailValue);
-  user.type(password, "123");
+
+  act(() => {
+    user.type(email, emailValue);
+    user.type(password, "123");
+  });
   expect(email.value).toBe(emailValue);
   expect(password.value).toBe("123");
 });
@@ -54,19 +65,19 @@ test("Should redirect to sign-up route when click to create one ", async () => {
   expect(history.location.pathname).toBe("/sign-up");
 });
 
-test("Should redirect to the main page when the login is successful", async () => {
-  let emailValue = "email@email.com";
+test("Should go away from /sign-in when its a successful login ", async () => {
+  let handleLogin = jest
+    .fn(() => Promise.resolve(true))
+    .mockName("handleLogin");
+
   const email = container.querySelector('[id="email"]');
   const password = container.querySelector('[id="password"]');
-
-  user.type(email, emailValue);
+  user.type(email, "test@test.com");
   user.type(password, "123");
-  expect(email.value).toBe(emailValue);
-  expect(password.value).toBe("123");
-  const button = container.querySelector('[type="submit"]');
-  user.click(button);
 
-  setTimeout(() => {
-    expect(history.location.pathname).toBe("/");
-  }, 100);
+  const button = container.querySelector('[type="submit"]');
+  act(() => {
+    user.click(button);
+  });
+  await waitForElementToBeRemoved(() => screen.getAllByText(/Sign In/i));
 });
