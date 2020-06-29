@@ -13,7 +13,7 @@ export default function TabItem({ children, tab, index, ...other }) {
     >
       {tab === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+          {children}
         </Box>
       )}
     </div>

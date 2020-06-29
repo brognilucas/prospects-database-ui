@@ -7,8 +7,10 @@ import PersonIcon from "@material-ui/icons/Person";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import TabItem from '../TabItem'
 import Detail from "./Detail";
+import Evaluations from '../Evaluations'
 const ProspectDetail = (props) => {
   const [prospect, setProspect] = useState({});
+  const [evaluations, setEvaluations] = useState({});
   const [tab, selectTab] = useState(0);
   const { code } = useParams();
 
@@ -26,14 +28,14 @@ const ProspectDetail = (props) => {
         aria-label="scrollable prevent tabs example"
       >
         <Tab icon={<PersonIcon />} label='Prospect Info' aria-label="phone" />
-        <Tab icon={<FavoriteIcon />} label='Evaluation' aria-label="favorite" />
+        <Tab icon={<FavoriteIcon />} label={`Evaluations`} aria-label="favorite" />
       </Tabs>{" "}
 
         <TabItem index={0} tab={tab}>
             <Detail prospect={prospect} />
         </TabItem>
         <TabItem index={1} tab={tab}>
-            <div>{ prospect.name}</div>
+            <Evaluations prospect={prospect} />
         </TabItem>
     </React.Fragment>
   );
