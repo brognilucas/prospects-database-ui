@@ -25,7 +25,7 @@ export default function List({ prospects }) {
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
+      <Table className={classes.table} aria-label="prospect-list">
         <TableHead>
           <TableRow>
             <TableCell></TableCell>

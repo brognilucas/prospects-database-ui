@@ -1,27 +1,20 @@
-import React,  { useEffect , useState } from 'react';
-import service from '../../services/prospects'
-import List from './List';
+import React, { useEffect, useState } from "react";
+import service from "../../services/prospects";
+import List from "./List";
 
-const ProspectListContainer = (prospects) => { 
-    const [state, setState] = useState([]);
+const ProspectListContainer = () => {
+  const [state, setState] = useState([]);
 
+  async function findProspects() {
+    let prospects = await service.find();
+    setState(prospects);
+  }
 
-    async function findProspects(){ 
-        let prospects = await service.find()
-        setState(prospects);
-    }
+  useEffect(() => {
+    findProspects();
+  }, []);
 
-
-    useEffect(() => { 
-        findProspects()
-    }, [])
-
-
-    return ( 
-        <List prospects={state} />
-    )
-
-}
-
+  return <List prospects={state} />;
+};
 
 export default ProspectListContainer;

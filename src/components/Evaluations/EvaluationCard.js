@@ -9,6 +9,10 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       margin: theme.spacing(3),
     },
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      flexDirection: "column",
+    },
   },
   large: {
     width: theme.spacing(10),
@@ -24,24 +28,43 @@ const useStyles = makeStyles((theme) => ({
     marginVertical: "5 em",
   },
   scouter: {
-    flexDirection: "row",
-    justifyContent: "center",
+    [theme.breakpoints.up("sm")]: {
+      flexDirection: "row",
+      justifyContent: "center",
+    },
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+  },
+  scouterName: {
+    [theme.breakpoints.up("md")]: {
+      fontSize: 12,
+    },
+    [theme.breakpoints.down("sm")]: {
+      textAlign: "center",
+    },
   },
   analisys: {
+    display: "flex",
     flexDirection: "column",
   },
   overall: {
     textAlign: "center",
   },
+  skillRating: {},
+  summary: {
+    textAlign: "justify",
+    fontSize: 14,
+  },
+  skillLabel: {
+    fontSize: 14,
+    fontWeight: "1000",
+  },
 }));
 
 function EvaluationCard({ evaluation }) {
-  function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-
   const classes = useStyles();
   return (
     <Container className={classes.background}>
@@ -52,7 +75,9 @@ function EvaluationCard({ evaluation }) {
             alt={evaluation._user.name}
             src={evaluation._user.photo}
           />
-          <Typography> {evaluation._user.name}</Typography>
+          <Typography className={classes.scouterName}>
+            {evaluation._user.name}
+          </Typography>
         </Box>
         <Box className={classes.analisys}>
           <Typography variant="subtitle1" className={classes.summary}>
@@ -60,12 +85,13 @@ function EvaluationCard({ evaluation }) {
             {evaluation.summary}
           </Typography>
           <List>
-            {evaluation.bestSkills.map((skill) => (
-              <Typography>
-                {" "}
-                {skill}
+            {evaluation.skills.map((skill) => (
+              <Typography key={skill.label} styles={classes.skillRating}>
+                <Typography class={classes.skillLabel}>
+                  {skill.label}
+                </Typography>
                 <StarRatings
-                  rating={getRandomInt(4,6)}
+                  rating={skill.rate}
                   starRatedColor="yellow"
                   numberOfStars={5}
                   starDimension={"20px"}
@@ -79,18 +105,8 @@ function EvaluationCard({ evaluation }) {
             <Typography> {evaluation.redFlag} </Typography>
           )}
 
-          <Typography>
-            <Typography className={classes.overall}>Overall</Typography>
-            <Typography className={classes.overall}>
-              <StarRatings
-                rating={evaluation.overall}
-                starRatedColor="yellow"
-                numberOfStars={5}
-                starDimension={"20px"}
-                isSelectable={false}
-                name="rating"
-              />
-            </Typography>
+          <Typography className={classes.overall}>
+            Overall: {evaluation.overall}
           </Typography>
         </Box>
       </Box>
