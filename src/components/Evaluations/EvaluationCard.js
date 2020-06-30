@@ -86,8 +86,8 @@ function EvaluationCard({ evaluation }) {
           </Typography>
           <List>
             {evaluation.skills.map((skill) => (
-              <Typography key={skill.label} styles={classes.skillRating}>
-                <Typography class={classes.skillLabel}>
+              <Box key={skill.label} styles={classes.skillRating}>
+                <Typography className={classes.skillLabel}>
                   {skill.label}
                 </Typography>
                 <StarRatings
@@ -98,7 +98,7 @@ function EvaluationCard({ evaluation }) {
                   isSelectable={false}
                   name="rating"
                 />
-              </Typography>
+              </Box>
             ))}
           </List>
           {evaluation.hasRedFlag && (

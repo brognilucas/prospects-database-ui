@@ -10,7 +10,6 @@ import Detail from "./Detail";
 import Evaluations from '../Evaluations'
 const ProspectDetail = (props) => {
   const [prospect, setProspect] = useState({});
-  const [evaluations, setEvaluations] = useState({});
   const [tab, selectTab] = useState(0);
   const { code } = useParams();
 
@@ -25,7 +24,7 @@ const ProspectDetail = (props) => {
         onChange={(e, index) => selectTab(index)}
         variant="scrollable"
         scrollButtons="off"
-        aria-label="scrollable prevent tabs example"
+        aria-label="scrollable prevent tabs"
       >
         <Tab icon={<PersonIcon />} label='Prospect Info' aria-label="phone" />
         <Tab icon={<FavoriteIcon />} label={`Evaluations`} aria-label="favorite" />

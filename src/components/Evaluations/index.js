@@ -14,8 +14,6 @@ function Evaluations({ prospect, ...props }) {
     findAll().then(setEvaluations);
   }, [prospect]);
 
-  console.log("evaluations ", evaluations);
-
   return (
     <List>
        {evaluations.map((evaluation) => (
