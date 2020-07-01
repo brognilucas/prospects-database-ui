@@ -51,16 +51,31 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   overall: {
-    textAlign: "center",
+    alignSelf: "center",
   },
-  skillRating: {},
+  skillRating: {
+    fontSize: 14,
+    fontWeight: "bold !important",
+    [theme.breakpoints.down("xs")]: {
+      textAlign: "center",
+    },
+  },
   summary: {
     textAlign: "justify",
     fontSize: 14,
   },
-  skillLabel: {
-    fontSize: 14,
-    fontWeight: "1000",
+  overallBox: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    [theme.breakpoints.down("xs")]: {
+      display: "flex",
+      flexDirection: "column",
+    },
+  },
+  overallSize: {
+    height: 150,
+    width: 150,
   },
 }));
 
@@ -84,30 +99,35 @@ function EvaluationCard({ evaluation }) {
             {" "}
             {evaluation.summary}
           </Typography>
-          <List>
-            {evaluation.skills.map((skill) => (
-              <Box key={skill.label} styles={classes.skillRating}>
-                <Typography className={classes.skillLabel}>
-                  {skill.label}
-                </Typography>
-                <StarRatings
-                  rating={skill.rate}
-                  starRatedColor="yellow"
-                  numberOfStars={5}
-                  starDimension={"20px"}
-                  isSelectable={false}
-                  name="rating"
-                />
-              </Box>
-            ))}
-          </List>
-          {evaluation.hasRedFlag && (
-            <Typography> {evaluation.redFlag} </Typography>
-          )}
-
-          <Typography className={classes.overall}>
-            Overall: {evaluation.overall}
-          </Typography>
+          <Box className={classes.overallBox}>
+            <Box>
+              <List>
+                {evaluation.skills.map((skill) => (
+                  <Box key={skill.label}>
+                    <Typography className={classes.skillRating}>
+                      {skill.label}
+                    </Typography>
+                    <Box className={classes.skillRating}>
+                      <StarRatings
+                        rating={skill.rate}
+                        starRatedColor="yellow"
+                        numberOfStars={5}
+                        starDimension={"20px"}
+                        isSelectable={false}
+                        name="rating"
+                        className={classes.skillRating}
+                      />
+                    </Box>
+                  </Box>
+                ))}
+              </List>
+            </Box>
+            <Box className={classes.overall}>
+              <Avatar className={classes.overallSize}>
+                {evaluation.overall}
+              </Avatar>
+            </Box>
+          </Box>
         </Box>
       </Box>
     </Container>

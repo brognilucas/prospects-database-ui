@@ -41,9 +41,4 @@ test('Should render correctly' , async () => {
     expect(
         await screen.findByText(mockValue._user.name, { exact: false})
     ).toBeInTheDocument()
-
-
-    expect(
-        await screen.findByText(`Overall: ${mockValue.overall}`, { exact: false})
-    ).toBeInTheDocument()
 })
