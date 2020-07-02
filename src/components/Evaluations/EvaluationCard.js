@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Avatar, Container, Box, List } from "@material-ui/core";
 import StarRatings from "react-star-ratings";
-
+import CircularProgress from "@material-ui/core/CircularProgress";
+import OverallGrade from '../OverallGrade'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -73,14 +74,38 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "column",
     },
   },
-  overallSize: {
-    height: 150,
-    width: 150,
+  overallRound: {
+    color: "#F2F230",
+  },
+  overallText: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 30,
   },
 }));
 
 function EvaluationCard({ evaluation }) {
   const classes = useStyles();
+  const [color, setColor] = useState("");
+
+  function findOverallColor() {
+    if (evaluation.overall > 9) {
+      return "#1098F7";
+    } else if (evaluation.overall > 8) {
+      return "#57A773";
+    } else if (evaluation.overall > 7) {
+      return "#F2F230";
+    } else if (evaluation.overall > 6) {
+      return "#E4572E";
+    } else {
+      return "#FF3C38";
+    }
+  }
+
+  useEffect(() => {
+    setColor(findOverallColor());
+  }, []);
+
   return (
     <Container className={classes.background}>
       <Box className={classes.root}>
@@ -123,9 +148,24 @@ function EvaluationCard({ evaluation }) {
               </List>
             </Box>
             <Box className={classes.overall}>
-              <Avatar className={classes.overallSize}>
-                {evaluation.overall}
-              </Avatar>
+              <OverallGrade overall={evaluation.overall} color={color} />
+              {/* <CircularProgress
+                variant="static"
+                size={150}
+                value={evaluation.overall * 10}
+              >
+                <Typography className={classes.overallText}>
+                  {evaluation.overall}
+                </Typography>
+              </CircularProgress> */}
+              {/* <Avatar
+                style={{ backgroundColor: color }}
+                className={classes.overallRound}
+              >
+                <Typography className={classes.overallText}>
+                  {evaluation.overall}
+                </Typography>
+              </Avatar> */}
             </Box>
           </Box>
         </Box>
