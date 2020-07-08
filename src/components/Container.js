@@ -20,7 +20,7 @@ function Container(props) {
 
   useEffect(() => { 
     userService.validateSession().then((response) => {
-      setState({ ...state, loggedIn: response });
+      setState({ ...state, loggedIn: response.auth, user: response.user });
     }).catch(() => setState({...state, loggedIn: false }))
   }, [])
 

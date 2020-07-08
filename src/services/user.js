@@ -22,7 +22,7 @@ const login = async (user) => {
       return false;
     }
 
-    return response.data.auth;
+    return response.data;
   } catch (error) {
     return false;
   }
@@ -47,7 +47,7 @@ const validateSession = async () => {
       return false;
     }
 
-    return response.data.auth;
+    return response.data;
   } catch (error) {
     return false;
   }

@@ -30,8 +30,8 @@ export default function SignIn(props) {
   const history = useHistory();
 
   async function handleLogin(data) {
-    let loggedIn = await userService.login(data);
-    await setState({...state, loggedIn })
+    let response = await userService.login(data);
+    await setState({ ...state, loggedIn: response.auth, user: response.user });
     history.push("/");
   }
 
