@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Detail({ prospect }) {
+function Detail({ prospect, onlyBasic = false }) {
   const classes = useStyles();
   return (
     <Container>
@@ -42,22 +42,26 @@ function Detail({ prospect }) {
           {prospect.college}
         </Typography>
       </Box>
-      <Box className={classes.root} display="flex" justifyContent="center">
-        <Typography color="textSecondary" variant="body1">
-          Height: {prospect.height}
-        </Typography>
-        <Typography color="textSecondary" variant="body1">
-          Weight: {prospect.weight}
-        </Typography>
-      </Box>
-      <Box className={classes.root} display="flex" justifyContent="center">
-        <Typography color="textSecondary" variant="body1">
-          Birth: {new Date(prospect.dateOfBirth).toLocaleDateString()}
-        </Typography>
-        <Typography color="textSecondary" variant="body1">
-          Draft Year: {prospect.year}
-        </Typography>
-      </Box>
+      {!onlyBasic && (
+        <>
+          <Box className={classes.root} display="flex" justifyContent="center">
+            <Typography color="textSecondary" variant="body1">
+              Height: {prospect.height}
+            </Typography>
+            <Typography color="textSecondary" variant="body1">
+              Weight: {prospect.weight}
+            </Typography>
+          </Box>
+          <Box className={classes.root} display="flex" justifyContent="center">
+            <Typography color="textSecondary" variant="body1">
+              Birth: {new Date(prospect.dateOfBirth).toLocaleDateString()}
+            </Typography>
+            <Typography color="textSecondary" variant="body1">
+              Draft Year: {prospect.year}
+            </Typography>
+          </Box>
+        </>
+      )}
     </Container>
   );
 }

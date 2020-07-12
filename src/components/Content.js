@@ -9,7 +9,8 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
-
+import Evaluate from './Evaluate/'
+import Evaluations from './Evaluations';
 
 const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
@@ -34,6 +35,8 @@ const Content = (props) => {
                 <Route exact path='/sign-up' component={SignUp} />
                 <Route exact path='/prospects' component={ProspectsList} />
                 <Route exact path='/prospects/:code' component={ProspectDetail} />
+                <Route exact path='/prospects/:code/evaluations' component={Evaluations} />
+                <Route exact path='/prospects/:code/evaluate' component={Evaluate} />
              </Switch>
         </main>
     )

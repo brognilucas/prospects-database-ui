@@ -6,5 +6,9 @@ async function find(prospectCode) {
     return response.data;
 }
 
+async function create(evaluation) { 
+    return service.post(`/evaluations`, evaluation);
+}
 
-export default { find };
+
+export default { find, create };
