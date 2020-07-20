@@ -20,7 +20,7 @@ const Evaluate = (props) => {
       ...evaluation, 
       prospectCode: code
     }).then((res) => {
-      history.push(`/prospects/${code}/evaluations`);
+      history.push(`/prospects/${code}/`);
     })
     .catch(error => console.log('error ', error))
   }

@@ -11,6 +11,7 @@ import Detail from "./Detail";
 import Evaluations from "../Evaluations";
 import Evaluate from "../Evaluate/";
 import { MenuContext } from "../../context/MenuContext";
+
 const ProspectDetail = (props) => {
   const [prospect, setProspect] = useState({});
   const [tab, selectTab] = useState(0);

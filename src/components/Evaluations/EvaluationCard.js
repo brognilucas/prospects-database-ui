@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Avatar, Container, Box, List } from "@material-ui/core";
 import StarRatings from "react-star-ratings";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import OverallGrade from '../OverallGrade'
+import OverallGrade from "../OverallGrade";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -53,6 +53,10 @@ const useStyles = makeStyles((theme) => ({
   },
   overall: {
     alignSelf: "center",
+    [theme.breakpoints.up("sm")]: { 
+      right: 100, 
+      position: 'absolute'
+    }
   },
   skillRating: {
     fontSize: 14,
@@ -68,7 +72,6 @@ const useStyles = makeStyles((theme) => ({
   overallBox: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
     [theme.breakpoints.down("xs")]: {
       display: "flex",
       flexDirection: "column",
@@ -149,23 +152,6 @@ function EvaluationCard({ evaluation }) {
             </Box>
             <Box className={classes.overall}>
               <OverallGrade overall={evaluation.overall} color={color} />
-              {/* <CircularProgress
-                variant="static"
-                size={150}
-                value={evaluation.overall * 10}
-              >
-                <Typography className={classes.overallText}>
-                  {evaluation.overall}
-                </Typography>
-              </CircularProgress> */}
-              {/* <Avatar
-                style={{ backgroundColor: color }}
-                className={classes.overallRound}
-              >
-                <Typography className={classes.overallText}>
-                  {evaluation.overall}
-                </Typography>
-              </Avatar> */}
             </Box>
           </Box>
         </Box>

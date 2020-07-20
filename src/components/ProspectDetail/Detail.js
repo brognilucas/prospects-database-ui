@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
-
+import Evaluations from '../Evaluations'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -60,6 +60,7 @@ function Detail({ prospect, onlyBasic = false }) {
               Draft Year: {prospect.year}
             </Typography>
           </Box>
+          <Evaluations prospectCode={prospect.code} />
         </>
       )}
     </Container>
